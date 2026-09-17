@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BOOKING_URL, SITE_EMAIL, PACKAGES, CARE_PLANS } from '../consts';
+import { withBase } from '../utils/paths';
+---
+<BaseLayout>
+  <section class="hero">
+    <p class="eyebrow">Gentry · Northwest Arkansas</p>
+    <h1>A clear website that helps local customers find you and reach out.</h1>
+    <p class="tagline">JustinCredible Web — sites & light automation for service businesses.</p>
+    <p class="blurb">
+      I’m Justin McBroom. I build polished, mobile-first websites and simple ops automation
+      so you spend less time chasing leads and more time doing the work.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href={withBase('get-started')}>Get started</a>
+      <a class="btn btn-ghost" href={BOOKING_URL} rel="noopener noreferrer" target="_blank">Book a call</a>
+      <a class="btn btn-ghost" href={`mailto:${SITE_EMAIL}`}>Email</a>
+    </div>
+  </section>
+
+  <section class="section-block" aria-labelledby="packages-heading">
+    <h2 id="packages-heading" class="section-title">Packages</h2>
+    <div class="card-grid cols-3">
+      {PACKAGES.map((pkg) => (
+        <article class:list={['pkg-card', { 'hero-pkg': pkg.hero }]}>
+          {pkg.hero && <span class="tag">Most complete</span>}
+          <h3>{pkg.name}</h3>
+          <p class="pkg-price">{pkg.price}</p>
+          {'priceNote' in pkg && pkg.priceNote && <p class="pkg-price-note">{pkg.priceNote}</p>}
+          <p class="muted">{pkg.blurb}</p>
+          <ul>
+            {pkg.includes.slice(0, 4).map((item) => <li>{item}</li>)}
+          </ul>
+          <div class="card-actions">
+            <a class="btn" href={withBase('services')}>See details</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-block" aria-labelledby="care-heading">
+    <h2 id="care-heading" class="section-title">Care Plans</h2>
+    <p class="muted" style="margin-top: -0.5rem; margin-bottom: 1rem; max-width: 40rem;">
+      After launch, keep the site accurate and online with a monthly retainer.
+    </p>
+    <div class="card-grid cols-3">
+      {CARE_PLANS.map((plan) => (
+        <article class="pkg-card">
+          <h3>{plan.name}</h3>
+          <p class="pkg-price">{plan.price}<span class="pkg-price-note"> {plan.period}</span></p>
+          <p class="muted">{plan.blurb}</p>
+        </article>
+      ))}
+    </div>
+    <p style="margin-top: 1rem;">
+      <a href={withBase('care-plans')}>Compare Care Plans →</a>
+    </p>
+  </section>
+
+  <section class="section-block" aria-labelledby="why-heading">
+    <h2 id="why-heading" class="section-title">Why local businesses hire me</h2>
+    <div class="card-grid cols-2">
+      <article class="pkg-card">
+        <h3>Warm & clear</h3>
+        <p class="muted">No jargon decks. You get straight talk, a simple plan, and a site your customers can use on their phone.</p>
+      </article>
+      <article class="pkg-card">
+        <h3>Built for contact</h3>
+        <p class="muted">Email and Book a call sit up front. Forms and booking links are wired so leads don’t die in the inbox void.</p>
+      </article>
+      <article class="pkg-card">
+        <h3>Local focus</h3>
+        <p class="muted">Gentry and Northwest Arkansas service businesses — HVAC, trades, clinics, shops, and anyone who lives on referrals.</p>
+      </article>
+      <article class="pkg-card">
+        <h3>Stay supported</h3>
+        <p class="muted">Care Plans cover edits, checks, and a steady reply window so the site doesn’t go stale after launch day.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta-band" aria-labelledby="cta-heading">
+    <h2 id="cta-heading">Ready when you are</h2>
+    <p>Tell me what you need in a short intake, or book a call. Prefer email? That’s fine too.</p>
+    <div class="btn-row">
+      <a class="btn" href={withBase('get-started')}>Start intake</a>
+      <a class="btn btn-ghost" href={BOOKING_URL} rel="noopener noreferrer" target="_blank">Book a call</a>
+    </div>
+  </section>
+</BaseLayout>
