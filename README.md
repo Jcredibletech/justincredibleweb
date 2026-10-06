@@ -18,7 +18,8 @@ GitHub Pages serves the `gh-pages` branch root. To redeploy:
 
 ```sh
 git worktree add /tmp/ghp gh-pages
-rsync -a --delete --exclude .git site/ /tmp/ghp/
+(cd /tmp/ghp && git rm -rq . )
+cp -a site/. /tmp/ghp/
 cd /tmp/ghp && git add -A && git commit -m "Deploy" && git push origin gh-pages
 ```
 
