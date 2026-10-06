@@ -19,7 +19,7 @@ npm run preview  # serve dist/ locally
 
 ## Project layout
 
-- `src/pages/` — Home, Services, Care Plans, How it works, About, Contact, FAQ, Get Started
+- `src/pages/` — Home, Services, Care Plans, How it works, About, Contact, FAQ, Get Started, Thank you
 - `src/components/` — Header, Footer, BaseHead
 - `src/consts.ts` — packages, care plans, contact facts
 - `public/` — favicon, logo, OG image
@@ -52,6 +52,7 @@ To wire Formspree (or similar) later:
 3. Remove or gate the client-side mailto `submit` handler so the browser posts normally.
 4. Keep `name` attributes on fields; Formspree will email you the payload.
 5. Rebuild and redeploy (`npm run build`, then force-push `dist/` to `gh-pages`).
+6. Set Formspree redirect `_next` to `https://jcredibletech.github.io/justincredibleweb/thank-you/` so posts land on the confirmation page.
 
 Until then, mailto works with no third-party account.
 

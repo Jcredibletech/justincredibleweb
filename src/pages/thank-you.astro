@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BOOKING_URL, SITE_EMAIL } from '../consts';
+import { withBase } from '../utils/paths';
+---
+<BaseLayout
+  title="Thank you"
+  description="Thanks for reaching out to JustinCredible Web — here’s what happens next."
+>
+  <header class="page-header">
+    <p class="eyebrow">Got it</p>
+    <h1>Thank you</h1>
+    <p>
+      Your intake is on its way. I’ll reply by email with a clear next step — usually a short
+      proposal covering package, timeline, and what’s included.
+    </p>
+  </header>
+
+  <section class="prose-block section-block">
+    <h2>What happens next</h2>
+    <ol class="steps-list">
+      <li>Finish sending the email draft if your mail app opened (or hit send if it’s waiting).</li>
+      <li>I’ll review what you need and reply from <strong>{SITE_EMAIL}</strong>.</li>
+      <li>We confirm scope before any work starts — no surprise invoices.</li>
+    </ol>
+    <p class="muted" style="margin-top: 1.25rem;">
+      Prefer to talk it through live? Book a short call while you wait.
+    </p>
+  </section>
+
+  <section class="cta-band">
+    <h2>Meanwhile</h2>
+    <p>Grab a time on the calendar, or peek at how delivery works.</p>
+    <div class="btn-row">
+      <a class="btn" href={BOOKING_URL} rel="noopener noreferrer" target="_blank">Book a call</a>
+      <a class="btn btn-ghost" href={withBase('how-it-works')}>How it works</a>
+      <a class="btn btn-ghost" href={withBase()}>Back home</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .steps-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.75rem;
+    color: var(--text, #e8e8e8);
+    line-height: 1.5;
+  }
+</style>

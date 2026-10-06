@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOKING_URL, SITE_EMAIL, PACKAGES, CARE_PLANS } from '../consts';
+import { withBase } from '../utils/paths';
 
 const mailto = `mailto:${SITE_EMAIL}?subject=${encodeURIComponent('JustinCredible Web — intake')}`;
+const thankYouPath = withBase('thank-you');
 ---
 <BaseLayout
   title="Get started"
@@ -87,7 +89,7 @@ const mailto = `mailto:${SITE_EMAIL}?subject=${encodeURIComponent('JustinCredibl
   </form>
 </BaseLayout>
 
-<script>
+<script define:vars={{ thankYouHref: thankYouPath }}>
   const form = document.getElementById('intake-form') as HTMLFormElement | null;
   const params = new URLSearchParams(window.location.search);
   const pkg = params.get('package');
@@ -121,6 +123,13 @@ const mailto = `mailto:${SITE_EMAIL}?subject=${encodeURIComponent('JustinCredibl
     const body = encodeURIComponent(lines.join('\n'));
     const subject = encodeURIComponent('JustinCredible Web — intake');
     const email = 'mustangeverything@gmail.com';
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:${email}?subject=${subject}&body=${body}`;
+    const mailLink = document.createElement('a');
+    mailLink.href = mailtoUrl;
+    mailLink.rel = 'noopener';
+    document.body.appendChild(mailLink);
+    mailLink.click();
+    mailLink.remove();
+    window.location.assign(thankYouHref);
   });
 </script>
